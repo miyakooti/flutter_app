@@ -5,19 +5,67 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  final title = "flutter sample";
+  final message = "sample message";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "flutter demo",
-      home: Text(
-        "hello flutter world",
+      home: MyHomePage(
+        title: this.title,
+        message: this.message
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  final String title;
+  final String message;
+  const MyHomePage({
+    Key? key,
+    required this.title,
+    required this.message
+  }): super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Text(
+        widget.message,
         style: TextStyle(fontSize: 32.0),
       ),
     );
   }
-
 }
+
+
+// class MyApp extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: "flutter demo",
+//       home: Text(
+//         "hello flutter world",
+//         style: TextStyle(fontSize: 32.0),
+//       ),
+//     );
+//   }
+//
+// }
+
+
 //
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});

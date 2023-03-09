@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,9 +32,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String text = "";
 
   void _incrementCounter() {
     setState(() {
+
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -45,12 +48,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // setStateされるたびに呼ばれる
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -59,22 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
         selectionColor: Colors.black,),
       ),
       body: Center(
-        child: Container(
-          color: Colors.blueGrey,
-          height: 200,
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-
-              children: <Widget>[
-                const Text('You have pushed the button this many times:',),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ],
-            ),
-          ),
+        child: ElevatedButton(
+          child: Text(text),
+          onPressed: () async {
+            final backValue =  await Navigator.push( // awaitの行が終了するまで，次の行が実行されない．waitしている
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NextPage('渡す要素'),
+              ),
+            );
+            setState(() {
+              text = backValue;
+            });
+            print(backValue);
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(

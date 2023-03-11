@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/next_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(const MyApp());
 }
 
@@ -36,8 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-
-
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -58,53 +62,53 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title,
-        selectionColor: Colors.black,),
+        title: Text(
+          widget.title,
+          selectionColor: Colors.black,
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[ // このWidgetって何の意味？要素をWidget型に固定するってこと？
+          children: <Widget>[
+            // このWidgetって何の意味？要素をWidget型に固定するってこと？
             // Image.network("https://github.com/miyakooti/kousuke_portofolio/blob/master/img/kousuke.jpg?raw=true"),
             // Image.asset("images/camera.jpeg"),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
+                Icon(Icons.print),
                 Icon(
-                  Icons.print
-                ),
-                Icon(
-                    Icons.save_as,
+                  Icons.save_as,
                   size: 200,
                 ),
               ],
             ),
 
             Text.rich(
-              TextSpan(
-                text: "あああああ",
-                style: TextStyle(),
-                children: <TextSpan>[
-                  TextSpan(text: ' beautiful ', style: TextStyle(fontStyle: FontStyle.italic)),
-                  TextSpan(text: 'world', style: TextStyle(fontWeight: FontWeight.bold)),
-                ]
-              ),
-
+              TextSpan(text: "あああああ", style: TextStyle(), children: <TextSpan>[
+                TextSpan(
+                    text: ' beautiful ',
+                    style: TextStyle(fontStyle: FontStyle.italic)),
+                TextSpan(
+                    text: 'world',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ]),
             ),
 
             ElevatedButton(
               child: Text(text),
               onPressed: () async {
-                final backValue =  await Navigator.push( // awaitの行が終了するまで，次の行が実行されない．waitしている
+                final backValue = await Navigator.push(
+                  // awaitの行が終了するまで，次の行が実行されない．waitしている
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NextPage('渡す要素'),
+                    builder: (context) => NextPage('渡す要素'),
                   ),
                 );
                 setState(() {
@@ -125,21 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // text ---------------------------------------------------------------------------
-
-
 
 // import 'package:flutter/material.dart';
 //
@@ -192,9 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //   }
 // }
 
-
 // /text ---------------------------------------------------------------------------
-
 
 // class MyApp extends StatelessWidget {
 //
@@ -210,7 +198,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //   }
 //
 // }
-
 
 //
 // class MyApp extends StatelessWidget {

@@ -6,23 +6,40 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () => _onWillPop(),
+      child: Scaffold(
         appBar: AppBar(
-          title: Text("ListPage"),
+          title: Text('次の画面'),
         ),
-        body: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                color: Colors.amber[colorCodes[index]],
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Center(
-                      child: Text('Entry ${entries[index]}',
-                          style: TextStyle(fontSize: 50))),
-                ),
-              );
-            }));
+      ),
+    );
   }
+
+  Future<bool> _onWillPop() async {
+    print("ああああ");
+    return true;
+  }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //       appBar: AppBar(
+  //         title: Text("ListPage"),
+  //       ),
+  //       body: ListView.builder(
+  //           padding: const EdgeInsets.all(8),
+  //           itemCount: entries.length,
+  //           itemBuilder: (BuildContext context, int index) {
+  //             return Container(
+  //               color: Colors.amber[colorCodes[index]],
+  //               child: Padding(
+  //                 padding: const EdgeInsets.all(10.0),
+  //                 child: Center(
+  //                     child: Text('Entry ${entries[index]}',
+  //                         style: TextStyle(fontSize: 50))),
+  //               ),
+  //             );
+  //           }));
+  // }
 }
